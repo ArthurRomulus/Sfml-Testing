@@ -2,9 +2,7 @@
 #include <iostream>
 #include <vector>
 
-
-using std::cout, std::cin, std::string;
-
+using std::cout, std::cin, std::string, sf::Keyboard;
 
 void window1(string title){
 
@@ -28,27 +26,27 @@ void window1(string title){
 
         sf::Event event;
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || Keyboard::isKeyPressed(Keyboard::Left)){
                     x += 1;
-                    cout << "pressed A \n";
+         
                     shape.setPosition(x, y);
-                }
+            }else if (true){
+            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+                window.close();
+
+            }
         
         while (window.pollEvent(event)){
             if (event.type == sf::Event::Closed){
                 window.close();
                 cout << "closing " << title << "\n";
-
-
-                
                 
             }
         }
-                window.clear();
+        window.clear();
         window.draw(shape);
-                window.display();     // mostrar en pantalla
+        window.display();     // mostrar en pantalla
     }
-
 }
 
 int main() {
@@ -58,6 +56,5 @@ int main() {
 
     window1(title);
     
-
     return 0;
 }
