@@ -31,7 +31,6 @@ void window1(string title){
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
                     x += 1;
                     cout << "pressed A \n";
-                    cout << x << " :x value \n";
                     shape.setPosition(x, y);
                 }
         
