@@ -27,11 +27,21 @@ void window1(string title){
         sf::Event event;
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || Keyboard::isKeyPressed(Keyboard::Left)){
-                    x += 1;
+                    x -= 1;
          
                     shape.setPosition(x, y);
-            }else if (true){
-            } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
+            } if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || Keyboard::isKeyPressed(Keyboard::Right)){
+                x += 1;
+                shape.setPosition(x, y);
+            } if (Keyboard::isKeyPressed(Keyboard::W) || Keyboard::isKeyPressed(Keyboard::Up)) {
+                y -= 1;
+                                    shape.setPosition(x, y);
+
+            } if (Keyboard::isKeyPressed(Keyboard::S) || Keyboard::isKeyPressed(Keyboard::Down)) {
+                y += 1;
+                                    shape.setPosition(x, y);
+
+            } if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
                 window.close();
 
             }
@@ -51,8 +61,7 @@ void window1(string title){
 
 int main() {
     
-    string title;
-    cin >> title;
+    string title = "lego";
 
     window1(title);
     
