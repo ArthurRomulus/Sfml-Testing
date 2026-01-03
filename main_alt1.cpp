@@ -1,37 +1,56 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-using namespace sf;
+class world{
 
-int main(){
+
+}
+
+class menu {
+    private:
+    sf::RenderWindow Menu;
+
+    public:
+
+    void executemenu(){
+            float y = 800, x = 600;
     
-    RenderWindow window(VideoMode(600, 500), "Contraseña");
-    RectangleShape rs(Vector2f(60.f, 30.f));
-    Texture t;
-    t.loadFromFile("Black_Hole.png");
-    rs.setTexture(&t);
+    
+    Menu(sf::VideoMode(x, y), "Menu");
 
-    RectangleShape lego[1] = {rs};
-
+    float sx = 200, sy = 100; 
+    sf::RectangleShape playb(sf::Vector2f(sx, sy));
+    playb.setFillColor(sf::Color(240, 240, 240));
+    playb.setPosition((x - sx) / 2, (y - sy) / 2);
 
     while (window.isOpen()){
-        Event event;
+        sf::Event event;
 
         while (window.pollEvent(event)){
-            if (event.type == Event::Closed)
+            if (event.type == sf::Event::Closed){
                 window.close();
-            if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left){
-                while (true)
-                {
-                    rs.setPosition(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left){
+                sf::Vector2f mousepos(event.mouseButton.x, event.mouseButton.y);
+                
+                    if (playb.getGlobalBounds().contains(mousepos)){
+                        window.close();
+                    }
                 }
             }
-        }
-                window.clear();
-                window.draw(lego[1]);
-            
+        window.clear();
 
-        window.display();
+        window.draw(playb);
+
+       window.display();
+        }
     }
+}
+
+
+int main(){
+
+
     return 0;
 }
