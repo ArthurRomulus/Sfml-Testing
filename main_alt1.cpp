@@ -11,25 +11,27 @@ int main(){
     t.loadFromFile("Black_Hole.png");
     rs.setTexture(&t);
 
+    RectangleShape lego[1] = {rs};
 
-    
+
     while (window.isOpen()){
         Event event;
 
         while (window.pollEvent(event)){
             if (event.type == Event::Closed)
                 window.close();
+            if (event.type == Event::MouseButtonPressed && event.mouseButton.button == Mouse::Left){
+                while (true)
+                {
+                    rs.setPosition(Mouse::getPosition(window).x, Mouse::getPosition(window).y);
+                }
+            }
         }
-        window.clear();
+                window.clear();
+                window.draw(lego[1]);
+            
 
-        for (int i = 0; i <= 10; i++){
-                rs.setPosition(i * 30.0, 200.);
-                window.draw(rs);
-        }
-         window.display();
-
+        window.display();
     }
-
-
     return 0;
 }
